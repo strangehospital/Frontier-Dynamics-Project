@@ -294,18 +294,14 @@ If you use STLE in your research:
 @article{stle2026,
   title={STLE: Set Theoretic Learning Environment for Uncertainty Quantification},
   author={[strangehospital]},
-  journal={GitHub repository},
-  year={2026},
-  howpublished={\url{https://github.com/yourusername/STLE}},
+  journal={Frontier-Dyanamics-Project},
+  year={2027},
+  howpublished={\url{https://github.com/strangehospital/STLE}},
   note={Version 2.0 - Functionally Complete}
 }
 ```
 
 ---
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
