@@ -58,7 +58,7 @@ thus follows
 p(r ∈ y) = 1 - p(r ∈ x)
 p(r ∈ x) = 1 - p(r ∈ y)
 
-To address the issue of partial knowledge and partial states, Claude helped integrate fuzzy membership into the theorem and Bayesian posterior priors to give the system a mechanism to refresh its understanding. These changes and the principle x ∩ y ≠ ∅ gives rise to the learning frontier x ∩ y = {r ∈ D : 0 < μ_x(r) < 1} These changes were implemented in STLE v1. 
+To address the issue of partial states, Claude helped adapt fuzzy membership into the theorem. Bayesian posterior priors were added to enhance STLE's ability to judge information. These changes and the principle x ∩ y ≠ ∅ gives rise to the learning frontier x ∩ y = {r ∈ D : 0 < μ_x(r) < 1} These changes were implemented in STLE v1. 
 
 A major conceptual issue was how to practically compute μ_x(r) to intiate the learning frontier. This was solved by creating a customized research and development task agent. With the issue properly framed the agent made a breakthrough
 
