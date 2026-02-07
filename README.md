@@ -299,7 +299,7 @@ If you use STLE in your research:
 @article{stle2026,
   title={Set Theoretic Learning Environment: A PAC-Bayes Framework for 
          Reasoning Beyond Training Distributions},
-  author={[Author Names]},
+  author={[strangehospital]},
   journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2026},
   note={Version 2.0 - Functionally Complete}
@@ -318,7 +318,7 @@ If you use STLE in your research:
 - Theoretical extensions
 - Bug reports & fixes
 
-**License**: MIT (recommended for maximum adoption)
+**
 
 ---
 
