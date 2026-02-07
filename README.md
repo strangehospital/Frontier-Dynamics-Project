@@ -13,7 +13,7 @@
 
 The Set Theoretic Learning Environment (STLE) is a functionally complete framework for artificial intelligence that enables principled reasoning about unknown information through dual-space representation. By explicitly modeling both accessible and inaccessible data as complementary fuzzy subsets of a unified domain, STLE provides AI systems with calibrated uncertainty quantification, robust out-of-distribution detection, and efficient active learning capabilities
 
-Utilizing Claude Sonnet 4.5, Deepseek, and a custom task agent from Genspark, I successfully vibe coded STLE from a theoretical concept into a functionally complete, tested, and validated AI Machine Learning framework. The critical bootstrap problem has been solved! All core functionality has been implemented and verified. 
+Utilizing Claude Sonnet 4.5, Deepseek, and a custom task agent from Genspark built for research and development, I successfully vibe coded STLE from a theoretical concept into a functionally complete, tested, and validated AI Machine Learning framework. The critical bootstrap problem has been solved! All core functionality has been implemented and verified. 
 
 
 ### Key Achievements
