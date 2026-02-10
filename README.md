@@ -1,5 +1,5 @@
 [README.md](https://github.com/user-attachments/files/25150380/README.md)
-# STLE: Set Theoretic Learning Environment
+# Set Theoretic Learning Environment
 
 > **Teaching AI to know what it doesn't know—explicitly, formally, and with complementary guarantees.**
 
