@@ -176,69 +176,67 @@ x ∩ y \= {r ∈ D : 0 \< μ\_x(r) \< 1}.
 
 ## **Accessibility Formula**
 
-## The fundamental difference between STLE v1 and v2 is that the STLE v2’s Bayesian formula had to be modified to solve the fundamental epistemological paradox of STLE (the bootstrap problem/chicken and egg problem)
+The fundamental difference between STLE v1 and v2 is that the STLE v2’s Bayesian formula had to be modified to solve the fundamental epistemological paradox of STLE (the bootstrap problem/chicken and egg problem)
 
-## **Fundamental Problem:** To compute the accessibility of “unseen data,” we need to model the structure of inaccessible space, but by definition, we lack direct access to it. Therefore, how do we initiate μ\_x(r) for “unseen data” without prior knowledge? 
+**Fundamental Problem:** To compute the accessibility of “unseen data,” we need to model the structure of inaccessible space, but by definition, we lack direct access to it. Therefore, how do we initiate μ\_x(r) for “unseen data” without prior knowledge? 
 
-## **Solution:** Two initialization strategies, also inspired by (Charpentier et al., 2020), that utilize density-based on-demand computation whereby we learn a density model P(r|accessible) and compute μ\_x(r) lazily when queried, instead of pre-computing for all of D (i.e the Universal Set: The set of all possible data points in a given domain)  
+**Solution:** Two initialization strategies, also inspired by (Charpentier et al., 2020), that utilize density-based on-demand computation whereby we learn a density model P(r|accessible) and compute μ\_x(r) lazily when queried, instead of pre-computing for all of D (i.e the Universal Set: The set of all possible data points in a given domain)  
 
-## **Strategy 1:** **Density-Based Pseudo-Count Initialization (DBPCI)**:
+**Strategy 1:** **Density-Based Pseudo-Count Initialization (DBPCI)**:
 
-## μ\_x(r) \= N\_x · P(r|accessible) / (N\_x · P(r|accessible) \+ N\_y · P(r|inaccessible))            (5)
+μ\_x(r) \= N\_x · P(r|accessible) / (N\_x · P(r|accessible) \+ N\_y · P(r|inaccessible))            (5)
 
-## Provided the theoretical foundation that we don’t need to enumerate all of the Universal set D. For example, we only need to define μ\_x for:
+Provided the theoretical foundation that we don’t need to enumerate all of the Universal set D. For example, we only need to define μ\_x for:
 
-1. ## Training data: μ\_x(r) \= 1.0 (fully accessible)
+1. Training data: μ\_x(r) \= 1.0 (fully accessible)
 
-2. ## Queried test points: μ\_x(r) computed on-demand via density estimation
+2. Queried test points: μ\_x(r) computed on-demand via density estimation
 
-3. ## Generated samples: μ\_x(r) computed as needed
+3. Generated samples: μ\_x(r) computed as needed
 
-## In strategy 1, both sides are scaled by sample counts; N\_x accessible and N\_y inaccessible. Therefore, this implies you are required to learn or estimate a density for inaccessible space. This is task was non-trivial, therefore another strategy was needed.
+In strategy 1, both sides are scaled by sample counts; N\_x accessible and N\_y inaccessible. Therefore, this implies you are required to learn or estimate a density for inaccessible space. This is task was non-trivial, therefore another strategy was needed.
 
-## **Strategy 2:** **Density-Based Lazy Initialization (DBLI)**:
+**Strategy 2:** **Density-Based Lazy Initialization (DBLI)**:
 
-## μ\_x(r) \= N · P(r|accessible) / (N · P(r|accessible) \+ P(r|inaccessible))               (6)
+μ\_x(r) \= N · P(r|accessible) / (N · P(r|accessible) \+ P(r|inaccessible))               (6)
 
-## Computationally speaking, the innovation here is that we don't need to compute all of the Universal Set D upfront. Instead, we can: 
+Computationally speaking, the innovation here is that we don't need to compute all of the Universal Set D upfront. Instead, we can: 
 
-1. ## Learn a density model P(r | accessible) on training data
+1. Learn a density model P(r | accessible) on training data
 
-2. ## Compute μ\_x(r) on demand when queried
+2. Compute μ\_x(r) on demand when queried
 
-3. ## Use density as a proxy for accessibility
+3. Use density as a proxy for accessibility
 
-## When utilizing a Density-Based Lazy Initialization strategy, only the accessible side is count-weighted, and the inaccessible term is just a flat uniform prior. In effect, this means no N\_y and no learned density to compute, therefore simpler to implement and avoids requiring a model of “unseen” space.
+When utilizing a Density-Based Lazy Initialization strategy, only the accessible side is count-weighted, and the inaccessible term is just a flat uniform prior. In effect, this means no N\_y and no learned density to compute, therefore simpler to implement and avoids requiring a model of “unseen” space.
 
-## The two strategies, Pseudo-Count Initialization and Lazy Initialization, describe different aspects of the same insight: not all of D, the set of all possible data points in a given domain, needs to be materialized at once. However, these strategies differ in how they handle the inaccessible set. Density-Based Pseudo-Count Initialization is the general form, i.e the theoretical mathematical foundation, and Density-Based Lazy Initialization is the simplified special case with the flat unit prior for actually computing the inaccessible space. 
+The two strategies, Pseudo-Count Initialization and Lazy Initialization, describe different aspects of the same insight: not all of D, the set of all possible data points in a given domain, needs to be materialized at once. However, these strategies differ in how they handle the inaccessible set. Density-Based Pseudo-Count Initialization is the general form, i.e the theoretical mathematical foundation, and Density-Based Lazy Initialization is the simplified special case with the flat unit prior for actually computing the inaccessible space. 
 
-* ## Lazy Initialization is the computational strategy; on-demand, not upfront
+*  Lazy Initialization is the computational strategy; on-demand, not upfront
 
-* ## "Pseudo-Count Initialization" (Research) is the mathematical mechanism, using sample counts as Bayesian evidence weights
-
-  ## 
+*  "Pseudo-Count Initialization" (Research) is the mathematical mechanism, using sample counts as Bayesian evidence weights
 
 ## **STLE v2 Definitions**
 
-## **Universal Set (D):** The set of all possible data points in a given domain
+**Universal Set (D):** The set of all possible data points in a given domain
 
-## **Accessible Set (x):** A fuzzy subset of D representing known/observed data
+**Accessible Set (x):** A fuzzy subset of D representing known/observed data
 
-* ## Membership function: μ\_x: D → \[0,1\]
+* Membership function: μ\_x: D → \[0,1\]
 
-* ## High μ\_x(r) indicates r is well-represented in accessible space
+* High μ\_x(r) indicates r is well-represented in accessible space
 
-## **Inaccessible Set (y):** The fuzzy complement of x representing unseen/unobserved data
+**Inaccessible Set (y):** The fuzzy complement of x representing unseen/unobserved data
 
-* ## Membership function: μ\_y: D → \[0,1\]
+* Membership function: μ\_y: D → \[0,1\]
 
-* ## Enforced complementarity: μ\_y(r) \= 1 \- μ\_x(r)
+* Enforced complementarity: μ\_y(r) \= 1 \- μ\_x(r)
 
-## **Theorem:**
+**Theorem:**
 
-## The accessible set x and inaccessible set y are complementary fuzzy subsets of a unified domain
+The accessible set x and inaccessible set y are complementary fuzzy subsets of a unified domain
 
-## **Learning Frontier**: The region of partial knowledge
+**Learning Frontier**: The region of partial knowledge
 
 x ∩ y \= {r ∈ D : 0 \< μ\_x(r) \< 1}.
 
@@ -258,15 +256,15 @@ x ∩ y \= {r ∈ D : 0 \< μ\_x(r) \< 1}.
 
 *\[A4\] **Continuity**: μ\_x is continuous in the data space*
 
-## **STLE v2: Density-Based Pseudo-Count Initialization (Accessibility Function)**
+**STLE v2: Density-Based Pseudo-Count Initialization (Accessibility Function)**
 
-## μ\_x(r) \= N\_x · P(r|accessible) / (N\_x · P(r|accessible) \+ N\_y · P(r|inaccessible))            (5)
+μ\_x(r) \= N\_x · P(r|accessible) / (N\_x · P(r|accessible) \+ N\_y · P(r|inaccessible))            (5)
 
 Where N\_x is the number of training samples, N\_y \= N\_x/5 is a pseudo-count for the inaccessible space, P(r|accessible) is the learned density under the accessible distribution (i.e estimated via normalizing flows), and P(r|inaccessible) is the complement density (uniform prior). The Pseudo-Count formula satisfies the four STLE axioms: complementarity (μ\_y \= 1 \- μ\_x), continuity is inherited from the smoothness of the normalizing flow, and the density ratio ensures appropriate behavior at the boundaries (i.e μ\_x → 1 for training data, μ\_x → 0 far from training data).
 
 **STLE v2: Density-Based Lazy Initialization (Accessibility Function)** 
 
-## μ\_x(r) \= N · P(r|accessible) / (N · P(r|accessible) \+ P(r|inaccessible))               (6)
+μ\_x(r) \= N · P(r|accessible) / (N · P(r|accessible) \+ P(r|inaccessible))               (6)
 
 One of the important insights of STLE is that the accessibility function does not need to be materialized for all the Universal Set D. Instead, μ\_x(r) can be computed on-demand via Density-Based Lazy Initialization (DBLI). To solve the “bootstrap problem,” we learn a density model P(r|accessible) on training data, compute μ\_x(r) for any queried point r using DBPCI,  (Equation 5). This procedure reduces the computational requirement from O(|D|) (which would be infinite for continuous domains) to O(1) per query, with O(N) preprocessing to fit the density model.
 
@@ -280,7 +278,7 @@ where μ\*\_x is the true accessibility and N is the training set size. This gua
 
 # **4  STLE v3: Technical Development**  
 
-# **4.1 MarvinBot: Autonomous Machine Learning System**
+## **4.1 MarvinBot: Autonomous Machine Learning System**
 
 The creation of MarvinBot, an autonomous machine learning system utilizing STLE, was fundamental in identifying weaknesses in STLE v2’s formulation, and thus necessitating STLE v3. Marvin’s defining characteristic is that he studies topics continuously, 24/7, without human intervention. Marvin could be called artificial intelligence; However, Marvin is not a chatbot in the traditional sense because no LLM layer is currently integrated (although one can chat with Marvin in a limited sense; i.e querying his database for a response). Instead, Marvin is an artificial computational intelligence system that independently decides what to study next, studies it by fetching Wikipedia, arXiv, and other content; processes that content through a machine learning pipeline and updates its own representational knowledge state over time. Therefore, regarding the sphere of AI, Marvin can be considered a type of nascent meta-cognition that genuinely develops knowledge overtime. The system is designed to operate by approaching any given topic in the following manner: 
 
@@ -294,7 +292,7 @@ The creation of MarvinBot, an autonomous machine learning system utilizing STLE,
 
 This accessibility score is called μ\_x (mu-x) and is a number between 0 and 1\. Everything in Marvin's architecture exists to compute, maintain, and improve μ\_x across a growing knowledge base that currently contains around 16,923 topics.
 
-# **4.2 Limitations Discovered by Implementation of MarvinBot**
+## **4.2 Limitations Discovered by Implementation of MarvinBot**
 
 When implementing STLE v2 practically, i.e the development of MarvinBot and deployment on large-scale knowledge bases (Wikipedia, arXiv, and other sources), the system grew to 16,923 topics across 23 domains and has over 3,200 completed study sessions. However, this deployment revealed two critical failures in the original formulation: The “curse of dimensionality” and a saturation bug. 
 
