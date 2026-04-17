@@ -70,14 +70,4 @@ MarvinBot is **not** an LLM wrapper, a chatbot framework, or a RAG system. There
 
 LLM integration is planned as a future layer — STLE as the "brain" (epistemic grounding), LLM as the "mouth" (natural language generation). But the current system demonstrates that principled epistemic self-awareness can exist independently of language models.
 
----
-
-## Further Reading
-
-- **[STLE v3 Specification](../stle/v3/STLE_v3.md)** — The theoretical framework powering Marvin
-- **[Architecture Overview](architecture.md)** — How STLE v3 fits into Marvin's stack
-- **[Research Paper](../stle/v3/Set_Theoretic_Learning_Environment_Paper.md)** — Formal academic paper covering the full STLE v1→v3 arc
-
----
-
 *"Marvin doesn't just store information — he knows what he knows, knows what he doesn't know, and systematically studies the boundary between the two."*
